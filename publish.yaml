@@ -13,9 +13,8 @@ jobs:
       -uses: actions/checkout@v2
       -name: Push images to GitHub Container Registry
       run:
-        docker login -u ${{ secrets.GITHUB_USERNAME }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
-        docker build -t ghcr.io/harshitkh1/backend:latest ./backend
-        docker build -t ghcr.io/harshitkh1/frontend:latest ./frontend
-        echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u harshitkh1 --password-stdin
+        docker login -u harshitkh1 --password ${{ secrets.GHCR_SECRET }} ghcr.io
+        docker build . -t ghcr.io/harshitkh1/backend:latest 
+        docker build . -t ghcr.io/harshitkh1/frontend:latest 
         docker push ghcr.io/harshitkh1/backend:latest
         docker push ghcr.io/harshitkh1/frontend:latest
