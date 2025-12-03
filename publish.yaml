@@ -10,11 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -uses: actions/checkout@v2
-      -name: Push images to GitHub Container Registry
-      run:
-        docker login -u harshitkh1 --password ${{ secrets.GHCR_SECRET }} ghcr.io
-        docker build . -t ghcr.io/harshitkh1/backend:latest 
-        docker build . -t ghcr.io/harshitkh1/frontend:latest 
-        docker push ghcr.io/harshitkh1/backend:latest
-        docker push ghcr.io/harshitkh1/frontend:latest
+      - uses: actions/checkout@v2
+      - name: Push images to GitHub Container Registry
+        run: |
+          docker login -u harshitkh1 --password ${{ secrets.GHCR_SECRET }} ghcr.io
+          docker build . -t ghcr.io/harshitkh1/backend:latest 
+          docker build . -t ghcr.io/harshitkh1/frontend:latest 
+          docker push ghcr.io/harshitkh1/backend:latest
+          docker push ghcr.io/harshitkh1/frontend:latest
