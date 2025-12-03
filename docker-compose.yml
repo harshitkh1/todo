@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15
+    image: postgres:15 
     restart: always 
     environment:
       POSTGRES_USER: todo_user
@@ -12,7 +12,7 @@ services:
       - "5432:5432"
 
   backend:
-    image: ghcr.io/harshitkh1/postgres:latest
+    image: ghcr.io/harshitkh1/backend:latest 
     # build: ./backend
     restart: always
     environment:
@@ -26,7 +26,8 @@ services:
       - db
 
   frontend:
-    build: ./frontend
+    # build: ./frontend
+    image: ghcr.io/harshitkh1/frontend:latest 
     restart: always
     ports:
       - "8080:80"
