@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Push images to GitHub Container Registry
         run: |
-          docker login -u harshitkh1 --password ${{ secrets.GHCR_SECRET }} ghcr.io
+          docker login --username harshitkh1 --password-stdin ghcr.io
           docker build ./backend -t ghcr.io/harshitkh1/backend:latest 
           docker build ./frontend -t ghcr.io/harshitkh1/frontend:latest 
           docker push ghcr.io/harshitkh1/backend:latest
