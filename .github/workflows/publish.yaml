@@ -14,7 +14,7 @@ jobs:
       - name: Push images to GitHub Container Registry
         run: |
           docker login -u harshitkh1 --password ${{ secrets.GHCR_SECRET }} ghcr.io
-          docker build . -t ghcr.io/harshitkh1/backend:latest 
-          docker build . -t ghcr.io/harshitkh1/frontend:latest 
+          docker build ./backend -t ghcr.io/harshitkh1/backend:latest 
+          docker build ./frontend -t ghcr.io/harshitkh1/frontend:latest 
           docker push ghcr.io/harshitkh1/backend:latest
           docker push ghcr.io/harshitkh1/frontend:latest
