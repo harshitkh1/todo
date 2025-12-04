@@ -17,4 +17,4 @@ jobs:
           docker build ./backend -t ghcr.io/harshitkh1/backend:latest 
           docker build ./frontend -t ghcr.io/harshitkh1/frontend:latest 
           docker push ghcr.io/harshitkh1/backend:latest
-          docker push ghcr.io/harshitkh1/frontend:latest
+          docker push ghcr.io/harshitkh1/frontend:latest 
