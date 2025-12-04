@@ -16,12 +16,12 @@ services:
     # build: ./backend
     restart: always
     environment:
-      DB_HOST: postgres 
+      DB_HOST: db
       DB_USER: todo_user
       DB_PASSWORD: todo_pass
       DB_NAME: todo_db
     ports:
-      - "5432:5432"
+      - "5000:5000"
     depends_on:
       - db
 
