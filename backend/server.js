@@ -24,11 +24,21 @@ const initDb = async () => {
     );
   `);
 };
+const client = require('prom-client');
+const register = new client.Registry();
+
+client.collectDefaultMetrics({ register });
+
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(await register.metrics());
+});
+
 
 initDb();
 
 // Add entry
-app.post("/add", async (req, res) => {
+app.post(["/add","/api/add"], async (req, res) => {
   const { num1, num2 } = req.body;
 
   const result = await pool.query(
@@ -40,9 +50,9 @@ app.post("/add", async (req, res) => {
 });
 
 // Get all entries
-app.get("/list", async (_, res) => {
+app.get(["/list", "/api/list"], async (_, res) => {
   const result = await pool.query("SELECT * FROM entries ORDER BY id DESC");
   res.json(result.rows);
 });
 
-app.listen(5000, () => console.log("Backend running on port 5000"));
+app.listen(8080, () => console.log("Backend running on port 8080"));

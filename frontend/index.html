@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Simple Todo App</title>
 </head>
+
 <body>
     <h1>Enter Two Numbers</h1>
 
@@ -13,36 +15,36 @@
     <h2>Stored Entries</h2>
     <ul id="list"></ul>
 
-<script>
-async function addEntry() {
-    const num1 = document.getElementById("num1").value;
-    const num2 = document.getElementById("num2").value;
+    <script>
+        async function addEntry() {
+            const num1 = document.getElementById("num1").value;
+            const num2 = document.getElementById("num2").value;
 
-    await fetch("http://localhost:5000/add", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ num1, num2 })
-    });
+            await fetch("/api/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ num1, num2 })
+            });
 
-    loadList();
-}
+            loadList();
+        }
 
-async function loadList() {
-    const res = await fetch("http://localhost:5000/list");
-    const data = await res.json();
+        async function loadList() {
+            const res = await fetch("/api/list");
+            const data = await res.json();
 
-    const list = document.getElementById("list");
-    list.innerHTML = "";
+            const list = document.getElementById("list");
+            list.innerHTML = "";
 
-    data.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `#${item.id} → ${item.num1}, ${item.num2}`;
-        list.appendChild(li);
-    });
-}
+            data.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = `#${item.id} → ${item.num1}, ${item.num2}`;
+                list.appendChild(li);
+            });
+        }
 
-loadList();
-</script>
+        loadList();
+    </script>
 
 </body>
 </html>
