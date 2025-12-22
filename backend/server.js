@@ -69,10 +69,7 @@ const httpRequestsTotal = new client.Counter({
   registers: [register],
 });
 
-
-// const register = new client.Registry();
-// client.collectDefaultMetrics({ register });
-
+// Metrics endpoint
 app.get("/metrics", async (req, res) => {
   res.set("Content-Type", register.contentType);
   res.end(await register.metrics());
