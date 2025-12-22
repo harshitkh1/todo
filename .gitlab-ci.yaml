@@ -1,0 +1,14 @@
+build_image:
+  image: docker:latest
+  services:
+    - docker:dind 
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  stage: build
+  before_script:
+    - docker login -u harshitkh1 -p $DOCKERHUB_SECRET
+  script:
+    - docker build ./backend -t harshitkh1/todo_gitlab:backend:latest
+    - docker build ./frontend -t harshitkh1/todo_gitlab:frontend:latest
+    - docker push harshitkh1/todo_gitlab:backend:latest 
+    - docker push harshitkh1/todo_gitlab:frontend:latest
