@@ -11,7 +11,7 @@ build_image:
   before_script:
     - docker login -u harshitkh1 -p $DOCKER_PAT 
   script:
-    - docker build ./backend -t harshitkh1/todo_gitlab-backend:latest
-    - docker build ./frontend -t harshitkh1/todo_gitlab-frontend:latest
-    - docker push harshitkh1/todo_gitlab-backend:latest 
-    - docker push harshitkh1/todo_gitlab-frontend:latest
+    - docker build ./backend -t harshitkh1/todo_gitlab:backend
+    - docker build ./frontend -t harshitkh1/todo_gitlab:frontend 
+    - docker push harshitkh1/todo_gitlab:backend
+    - docker push harshitkh1/todo_gitlab:frontend
